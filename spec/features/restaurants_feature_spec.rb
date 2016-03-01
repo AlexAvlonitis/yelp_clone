@@ -23,6 +23,7 @@ feature 'restaurants' do
   end
 
   context 'creating restaurants' do
+
     scenario 'prompts user to fill out a form, then displays the new restaurant' do
       visit '/restaurants'
       click_link 'Add a restaurant'
@@ -41,6 +42,7 @@ feature 'restaurants' do
         expect(page).to have_content 'error'
       end
     end
+    
   end
 
   context 'viewing restaurants' do

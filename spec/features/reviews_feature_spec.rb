@@ -21,4 +21,14 @@ feature 'reviewing' do
     expect(page).to have_content('You have already reviewed this restaurant')
   end
 
+  scenario 'displays an average rating for all reviews' do
+    signup(email: "asd@asd.com", password: "password123")
+    visit '/'
+    add_review(thoughts: 'So so', review: 3)
+    click_link 'Sign out'
+    signup(email: "asd@asd.com", password: "password123")
+    add_review(thoughts: 'Great', review: 5)
+    expect(page).to have_content('Average rating: 4')
+  end
+
 end

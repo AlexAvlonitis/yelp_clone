@@ -28,7 +28,7 @@ feature 'reviewing' do
     click_link 'Sign out'
     signup(email: "asd@asd.com", password: "password123")
     add_review(thoughts: 'Great', review: 5)
-    expect(page).to have_content('Average rating: 4')
+    expect(page).to have_content('Average rating: ★★★★☆')
   end
 
 end

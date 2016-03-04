@@ -17,12 +17,12 @@
                 <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
                 <%= link_to "Delete review", review_path(review.id), method: :delete %>
                 <%= link_to "Endorse review", review_endorsements_path(review), class: 'endorsements-link' %>
-                <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
-                <%= star_rating(restaurant.average_rating) %>
                 <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= 'endorsement'.pluralize(review.endorsements.count) %>
               </li>
             <% end %>
           </ul>
+          <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
+          <%= star_rating(restaurant.average_rating) %>
         <% else %>
           <p>No Reviews.</p>
         <% end %>

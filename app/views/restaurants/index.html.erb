@@ -11,12 +11,10 @@
           <li>
             <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
             <%= link_to "Delete review", review_path(review.id), method: :delete %>
-            <%= link_to "Endorse review", review_endorsements_path(review), method: :post %>
+            <%= link_to "Endorse review", review_endorsements_path(review), class: 'endorsements-link' %>
             <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
             <%= star_rating(restaurant.average_rating) %>
-            <% restaurant.reviews.each do |review| %>
-              <p><%= pluralize review.endorsements.count, 'endorsement' %></p>
-            <% end %>
+            <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= 'endorsement'.pluralize(review.endorsements.count) %>
           </li>
         <% end %>
       </ul>

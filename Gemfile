@@ -48,6 +48,8 @@ group :development do
 end
 
 group :test do
+  gem 'poltergeist'
+  gem 'database_cleaner'
   gem 'shoulda'
   gem 'rspec-rails'
   gem 'capybara'

@@ -1,36 +1,35 @@
-<a href='<%= new_restaurant_path %>' class="btn btn-success btn-lg"> Add a restaurant </a>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <% if @restaurants.any? %>
-      <% @restaurants.each do |restaurant| %>
-        <h2> <%= link_to restaurant.name, restaurant_path(restaurant) %> </h2>
-        <%= image_tag restaurant.image.url(:thumb) %>
+
+  <a href='<%= new_restaurant_path %>' class="btn btn-success btn-lg pull-right"> Add a restaurant </a>
+  <% if @restaurants.any? %>
+    <% @restaurants.each do |restaurant| %>
+      <h2> <%= link_to restaurant.name, restaurant_path(restaurant) %> </h2>
+      <%= image_tag restaurant.image.url(:thumb) %>
+      <% if current_user %>
         <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
         <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
         <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
-        <h3>Reviews for <%= restaurant.name %></h3>
-        <% if restaurant.reviews.any? %>
-          <ul>
-            <% restaurant.reviews.each do |review| %>
-              <li>
-                <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
+      <% end %>
+      <h3>Reviews for <%= restaurant.name %></h3>
+      <% if restaurant.reviews.any? %>
+        <ul>
+          <% restaurant.reviews.each do |review| %>
+            <li>
+              <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
+              <% if current_user %>
                 <%= link_to "Delete review", review_path(review.id), method: :delete %>
                 <%= link_to "Endorse review", review_endorsements_path(review), class: 'endorsements-link' %>
-                <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= 'endorsement'.pluralize(review.endorsements.count) %>
-              </li>
-            <% end %>
-          </ul>
-          <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
-          <%= star_rating(restaurant.average_rating) %>
-        <% else %>
-          <p>No Reviews.</p>
-        <% end %>
-        <hr>
+              <% end %>
+              <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= 'endorsement'.pluralize(review.endorsements.count) %>
+            </li>
+          <% end %>
+        </ul>
+        <h3>Average rating: <%= restaurant.average_rating.to_i %></h3>
+        <%= star_rating(restaurant.average_rating) %>
+      <% else %>
+        <p>No Reviews.</p>
       <% end %>
-    <% else %>
-      No restaurants yet
+      <hr>
     <% end %>
-  </div>
-  <div class="col-md-4"></div>
-</div>
+  <% else %>
+    No restaurants yet
+  <% end %>

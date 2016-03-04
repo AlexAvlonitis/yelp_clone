@@ -11,11 +11,11 @@
 <%= render partial: 'layouts/navbar' %>
 
 <div id="main-container" class="container">
-
-  <%= notice %>
-  <%= alert %>
-  <%= yield %>
-
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= render partial: 'layouts/errors' %>
+      <%= yield %>
+    </div>
 </div>
 
 </body>

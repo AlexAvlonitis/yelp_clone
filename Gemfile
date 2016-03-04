@@ -15,7 +15,6 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
-
 gem 'dotenv-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
